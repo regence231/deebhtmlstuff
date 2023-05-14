@@ -1,0 +1,107 @@
+<div>
+    <input type="text" id="task-input" placeholder="Add task">
+    <button id="add-task">Add Task</button>
+  </div>
+  <ul id="task-list"></ul>
+<style>body {
+    font-family: Arial, sans-serif;
+  }
+  
+  input[type="text"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-right: 10px;
+    width: 60%;
+  }
+  
+  button {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  li span {
+    margin-right: 10px;
+  }
+  
+  li button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+  }
+  
+  li button.edit {
+    background-color: #2196F3;
+  }
+  </style>  
+  <script>// Get the input and button elements
+    const taskInput = document.getElementById('task-input');
+    const addTaskBtn = document.getElementById('add-task');
+    
+    // Get the task list element
+    const taskList = document.getElementById('task-list');
+    
+    // Add event listener to the "Add Task" button
+    addTaskBtn.addEventListener('click', function() {
+      // Get the task name from the input field
+      const taskName = taskInput.value;
+    
+      // Clear the input field
+      taskInput.value = '';
+    
+      // Create a new task item
+      const taskItem = document.createElement('li');
+      const taskItemText = document.createElement('span');
+      const editBtn = document.createElement('button');
+      const deleteBtn = document.createElement('button');
+    
+      // Set the text content of the task item
+      taskItemText.textContent = taskName;
+    
+      // Set the text content of the edit and delete buttons
+      editBtn.textContent = 'Edit';
+      deleteBtn.textContent = 'Delete';
+    
+      // Add event listener to the delete button
+      deleteBtn.addEventListener('click', function() {
+        taskList.removeChild(taskItem);
+      });
+    
+      // Add event listener to the edit button
+      editBtn.addEventListener('click', function() {
+        // Get the current text content of the task item
+        const currentTaskName = taskItemText.textContent;
+    
+        // Create a prompt to get the new task name
+        const newTaskName = prompt('Enter the new task name', currentTaskName);
+    
+        // Update the text content of the task item
+        taskItemText.textContent = newTaskName;
+      });
+    
+      // Append the task item elements to the task item
+      taskItem.appendChild(taskItemText);
+      taskItem.appendChild(editBtn);
+      taskItem.appendChild(deleteBtn);
+    
+      // Append the task item to the task list
+      taskList.appendChild(taskItem);
+    });
+    </script>
